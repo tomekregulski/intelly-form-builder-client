@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Select = () => {
+const MultiSelect = () => {
   return (
     <div>
       <label></label>
@@ -11,4 +11,4 @@ const Select = () => {
   );
 };
 
-export default Select;
+export default MultiSelect;
