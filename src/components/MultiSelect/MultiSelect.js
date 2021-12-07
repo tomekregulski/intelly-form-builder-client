@@ -1,11 +1,17 @@
 import React from 'react';
 
-const MultiSelect = () => {
+const MultiSelect = (props) => {
+  const handleCallback = (value) => {
+    props.callback(value);
+  };
   return (
     <div>
-      <label></label>
-      <select>
-        <option value=''>--Please Select an Option</option>
+      <label>{props.label}</label>
+      <select onChange={(e) => handleCallback(e.target.value)}>
+        <option value=''>--Please Select a {props.label}</option>
+        {props.options.map((option) => {
+          return <option value={option}>{option}</option>;
+        })}
       </select>
     </div>
   );
