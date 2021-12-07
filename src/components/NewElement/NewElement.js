@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import Input from '../Input/Input';
 import MultiSelect from '../MultiSelect/MultiSelect';
@@ -13,9 +13,11 @@ const NewElement = () => {
 
   const renderResponseOptions = () => {
     let responses = [];
-    let response = <Input label='Input Response Text: ' />;
+    let key = 1;
+    let response = <Input key={key} label='Input Response Text: ' />;
     for (let i = 0; i < responseFields; i++) {
       responses.push(response);
+      key++;
     }
     return responses;
   };
