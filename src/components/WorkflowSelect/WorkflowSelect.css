@@ -1,0 +1,22 @@
+#top-border {
+  height: 30px;
+  background-color: rgba(0, 180, 249, 0.872);
+  margin-top: 15px;
+}
+
+#main-body {
+  display: flex;
+  flex-direction: column;
+}
+
+#primary-btns {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+#bottom-border {
+  height: 1px;
+  background-color: rgba(0, 180, 249, 0.872);
+  margin-top: 15px;
+}
