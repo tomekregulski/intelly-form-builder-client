@@ -3,8 +3,10 @@ import './Button.css';
 
 const Button = (props) => {
   const handleCallback = () => {
+    console.log('callback');
     props.callback();
   };
+
   return (
     <button
       style={{
@@ -13,7 +15,7 @@ const Button = (props) => {
         backgroundColor: `${props.color}`,
         border: `${props.color}`,
       }}
-      onClick={handleCallback}
+      onClick={() => handleCallback()}
     >
       {props.label}
     </button>

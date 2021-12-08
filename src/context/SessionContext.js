@@ -4,6 +4,8 @@ export const SessionContext = createContext();
 
 export const SessionProvider = (props) => {
   const [formData, setFormData] = useState([]);
+  const [showWorkflowSelect, setShowWorkflowSelect] = useState(true);
+  const [task, setTask] = useState('');
 
   useEffect(() => {
     if (localStorage.getItem('session')) {
@@ -20,7 +22,13 @@ export const SessionProvider = (props) => {
   }, [formData]);
 
   return (
-    <SessionContext.Provider value={{ data: [formData, setFormData] }}>
+    <SessionContext.Provider
+      value={{
+        data: [formData, setFormData],
+        workflow: [showWorkflowSelect, setShowWorkflowSelect],
+        workItem: [task, setTask],
+      }}
+    >
       {props.children}
     </SessionContext.Provider>
   );
