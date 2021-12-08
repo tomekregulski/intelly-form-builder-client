@@ -8,7 +8,7 @@ const MultiSelect = (props) => {
     <div>
       <label>{props.label}</label>
       <select onChange={(e) => handleCallback(e.target.value)}>
-        <option value=''>--Please Select a {props.label}</option>
+        <option value=''>--Please Select an Option</option>
         {props.options.map((option, index) => {
           return (
             <option key={index} value={option}>

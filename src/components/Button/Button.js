@@ -3,7 +3,6 @@ import './Button.css';
 
 const Button = (props) => {
   const handleCallback = () => {
-    console.log('callback');
     props.callback();
   };
 
