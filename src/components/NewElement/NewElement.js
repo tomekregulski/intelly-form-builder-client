@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import Input from '../Input/Input';
 import MultiSelect from '../MultiSelect/MultiSelect';
 
+import Button from '../Button/Button';
+
 const NewElement = () => {
   const [element, setElement] = useState('');
   const [responseFields, setResponseFields] = useState(3);
@@ -43,12 +45,12 @@ const NewElement = () => {
           <>
             <Input label='Input Question Text: ' />
             {renderResponseOptions()}
-            <button onClick={() => addResponseOption()}>
+            <Button callback={() => addResponseOption()}>
               Add Response Option
-            </button>
-            <button onClick={() => removeResponseOption()}>
+            </Button>
+            <Button callback={() => removeResponseOption()}>
               Remove Response Option
-            </button>
+            </Button>
           </>
         );
       case 'checkbox':
@@ -56,12 +58,12 @@ const NewElement = () => {
           <>
             <Input label='Input Question Text: ' />
             {renderResponseOptions()}
-            <button onClick={() => addResponseOption()}>
+            <Button callback={() => addResponseOption()}>
               Add Response Option
-            </button>
-            <button onClick={() => removeResponseOption()}>
+            </Button>
+            <Button callback={() => removeResponseOption()}>
               Remove Response Option
-            </button>
+            </Button>
           </>
         );
       default:

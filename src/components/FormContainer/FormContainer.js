@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react';
 import { SessionContext } from '../../context/SessionContext';
 
 import Input from '../Input/Input';
+import MultiSelect from '../MultiSelect/MultiSelect';
+import YesNoSelect from '../YesNoSelect/YesNoSelect';
 
 import Modal from '../Modal/Modal';
 import Button from '../Button/Button';
@@ -18,23 +20,42 @@ const FormContainer = () => {
 
   const [show, setShow] = useState(false);
 
+  const handleSave = () => {
+    alert('Functionality Coming Soon');
+  };
+
   const handleCancel = () => {
-    console.log('cancel');
     setTask('');
     setShowWorkflowSelect(true);
   };
 
   const saveElement = () => {
-    console.log('save');
     setShow(false);
     setFormData((prevState) => [...prevState, 'save']);
+  };
+
+  const renderInput = (item, index) => {
+    return <Input key={index} label={item.question} />;
+  };
+
+  const renderSelect = (item, index) => {
+    return (
+      <MultiSelect key={index} options={item.options} label={item.question} />
+    );
+  };
+
+  const renderYesNo = (item, index) => {
+    return <YesNoSelect key={index} label={item.question} />;
   };
 
   return (
     <div>
       {showWorkflowSelect === false && (
         <div id='form-container'>
-          <Input label='Name of Form: ' />
+          <Input
+            label='Name of Form: '
+            placeholder={formData.name ? formData.name : ''}
+          />
           <div>
             {task === 'new' && (
               <>
@@ -42,12 +63,12 @@ const FormContainer = () => {
                   color='rgba(0, 180, 249, 0.872)'
                   margin='15px 0 15px 0'
                   label='Add New Element'
-                  onClick={() => setShow(true)}
+                  callback={() => setShow(true)}
                 ></Button>
                 <Modal
                   show={show}
                   onClose={() => saveElement()}
-                  title='Element'
+                  title='Add a New Element'
                 >
                   <>
                     <NewElement />
@@ -56,11 +77,37 @@ const FormContainer = () => {
               </>
             )}
           </div>
-          <Button
-            color='rgba(0, 180, 249, 0.872)'
-            label='Cancel'
-            callback={() => handleCancel()}
-          />
+
+          <div id='form-body'>
+            {formData.questions &&
+              formData.questions.map((item, index) => {
+                switch (item.type) {
+                  case 'input':
+                    return renderInput(item, index);
+                  case 'select':
+                    return renderSelect(item, index);
+                  case 'yes-no':
+                    return renderYesNo(item, index);
+                  default:
+                    return <div key={index}>{item.question}</div>;
+                }
+              })}
+          </div>
+
+          <div id='control-buttons'>
+            <Button
+              color='rgba(0, 180, 249, 0.872)'
+              margin='0 5px 0 0'
+              label='Save Form'
+              callback={() => handleSave()}
+            />
+            <Button
+              color='rgba(0, 180, 249, 0.872)'
+              margin='0 0 0 5px'
+              label='Cancel'
+              callback={() => handleCancel()}
+            />
+          </div>
         </div>
       )}
     </div>

@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+import Button from '../Button/Button';
+
 import './Modal.css';
 
 const Modal = (props) => {
@@ -15,7 +18,11 @@ const Modal = (props) => {
         </div>
         <div className='modal-body'>{props.children}</div>
         <div className='modal-footer'>
-          <button onClick={props.onClose}>Save</button>
+          <Button
+            color='rgba(0, 180, 249, 0.872)'
+            label='Save'
+            callback={props.onClose}
+          />
         </div>
       </div>
     </div>,

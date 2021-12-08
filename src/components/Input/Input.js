@@ -4,7 +4,7 @@ const Input = (props) => {
   return (
     <div>
       <label>{props.label}</label>
-      <input />
+      <input placeholder={props.placeholder} />
     </div>
   );
 };

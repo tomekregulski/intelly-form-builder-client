@@ -1,21 +1,42 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { SessionContext } from '../../context/SessionContext';
 
-import Modal from '../Modal/Modal';
 import Button from '../Button/Button';
-import NewElement from '../NewElement/NewElement';
 
 import './WorkflowSelect.css';
+
+const tempFormData = {
+  name: 'Test Form',
+  questions: [
+    { type: 'input', question: 'This is a test' },
+    {
+      type: 'select',
+      question: 'What was the weather like?',
+      options: ['Warm', 'Raining', 'Cold'],
+    },
+    {
+      type: 'yes-no',
+      question: 'Should this store be visited again?',
+    },
+  ],
+};
 
 const WorkflowSelect = () => {
   const { data, workflow, workItem } = useContext(SessionContext);
 
+  // eslint-disable-next-line no-unused-vars
   const [formData, setFormData] = data;
   const [showWorkflowSelect, setShowWorkflowSelect] = workflow;
+  // eslint-disable-next-line no-unused-vars
   const [task, setTask] = workItem;
 
   const handleWorkflow = (item) => {
-    console.log('workflow ' + item);
+    if (item === 'edit') {
+      setFormData(tempFormData);
+    }
+    if (item === 'new') {
+      setFormData('');
+    }
     setTask(item);
     setShowWorkflowSelect(false);
   };
