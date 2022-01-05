@@ -2,9 +2,9 @@ import React from 'react';
 
 const YesNoSelect = (props) => {
   return (
-    <div>
+    <div style={{ marginTop: '40px' }}>
       <label>{props.label}</label>
-      <select style={{ display: 'block' }}>
+      <select style={{ marginTop: '5px', display: 'block' }}>
         <option value='Yes'>Yes</option>
         <option value='No'>No</option>
       </select>

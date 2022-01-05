@@ -34,6 +34,10 @@ const FormContainer = () => {
     setFormData((prevState) => [...prevState, 'save']);
   };
 
+  const cancelElement = () => {
+    setShow(false);
+  };
+
   const renderInput = (item, index) => {
     return <Input key={index} label={item.question} />;
   };
@@ -52,46 +56,57 @@ const FormContainer = () => {
     <div>
       {showWorkflowSelect === false && (
         <div id='form-container'>
-          <Input
-            label='Name of Form: '
-            placeholder={formData.name ? formData.name : ''}
-          />
           <div>
-            {task === 'new' && (
-              <>
-                <Button
-                  color='rgba(0, 180, 249, 0.872)'
-                  margin='15px 0 15px 0'
-                  label='Add New Element'
-                  callback={() => setShow(true)}
-                ></Button>
-                <Modal
-                  show={show}
-                  onClose={() => saveElement()}
-                  title='Add a New Element'
-                >
-                  <>
-                    <NewElement />
-                  </>
-                </Modal>
-              </>
-            )}
-          </div>
+            <Input
+              label='Name of Form: '
+              placeholder={formData.name ? formData.name : ''}
+            />
+            <div id='form'>
+              {task === 'new' && (
+                <>
+                  <Button
+                    color='rgba(0, 180, 249, 0.872)'
+                    margin='15px 0 15px 0'
+                    label='Add New Element'
+                    callback={() => setShow(true)}
+                  ></Button>
+                  <Modal
+                    show={show}
+                    onSave={() => saveElement()}
+                    onCancel={() => cancelElement()}
+                    buttons={[
+                      {
+                        type: 'save',
+                        callback: 'onClose',
+                        margin: '0 5px 0 0',
+                      },
+                      { type: 'cancel', callback: 'onCancel', margin: 0 },
+                    ]}
+                    title='Add a New Element'
+                  >
+                    <>
+                      <NewElement />
+                    </>
+                  </Modal>
+                </>
+              )}
+            </div>
 
-          <div id='form-body'>
-            {formData.questions &&
-              formData.questions.map((item, index) => {
-                switch (item.type) {
-                  case 'input':
-                    return renderInput(item, index);
-                  case 'select':
-                    return renderSelect(item, index);
-                  case 'yes-no':
-                    return renderYesNo(item, index);
-                  default:
-                    return <div key={index}>{item.question}</div>;
-                }
-              })}
+            <div id='form-body'>
+              {formData.questions &&
+                formData.questions.map((item, index) => {
+                  switch (item.type) {
+                    case 'input':
+                      return renderInput(item, index);
+                    case 'select':
+                      return renderSelect(item, index);
+                    case 'yes-no':
+                      return renderYesNo(item, index);
+                    default:
+                      return <div key={index}>{item.question}</div>;
+                  }
+                })}
+            </div>
           </div>
 
           <div id='control-buttons'>

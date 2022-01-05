@@ -5,9 +5,12 @@ const MultiSelect = (props) => {
     props.callback(value);
   };
   return (
-    <div>
+    <div style={{ marginTop: '40px' }}>
       <label>{props.label}</label>
-      <select onChange={(e) => handleCallback(e.target.value)}>
+      <select
+        style={{ marginTop: '5px', display: 'block' }}
+        onChange={(e) => handleCallback(e.target.value)}
+      >
         <option value=''>--Please Select an Option</option>
         {props.options.map((option, index) => {
           return (
